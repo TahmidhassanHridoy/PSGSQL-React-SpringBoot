@@ -11,10 +11,11 @@ const {id}=useParams()
 const [user,setUsers]= useState({
   name:"",
   email:"",
-  username:""
+  username:"",
+  dept:""
 });
 
-const {name,username,email}=user
+const {name,username,email,dept}=user
 
 const onInputChange = (e) => {
    setUsers({...user,[e.target.name]:e.target.value }); 
@@ -28,12 +29,12 @@ useEffect(()=>{
 
 const onSubmit =async (e) => {
     e.preventDefault();   
-    await axios.put(`http://localhost:8050/user/${id}`, user);
+    await axios.put(`http://localhost:5050/user/${id}`, user);
     navegate("/");
 };
 
 const loadUsers=async()=>{
-    const result=await axios.get(`http://localhost:8050/user/${id}`, user)
+    const result=await axios.get(`http://localhost:5050/user/${id}`, user)
     setUsers(result.data)
 }
 
@@ -54,6 +55,10 @@ const loadUsers=async()=>{
             <div class="form-floating mb-2">
               <input type="username" class="form-control" id="floatingInput" placeholder="Username" name='username' value={username} onChange={(e)=>onInputChange(e)} />
               <label for="floatingInput">UserName</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="username" class="form-control" id="floatingInput" placeholder="Depeartment" name='dept' value={dept} onChange={(e)=>onInputChange(e)} />
+              <label for="floatingInput">Depeartment</label>
             </div>
             <button type="submit" class="btn btn-outline-primary">Update</button>
             <Link  class="btn btn-outline-danger mx-2" to="/ ">Cancel</Link>

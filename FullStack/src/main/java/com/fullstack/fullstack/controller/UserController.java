@@ -13,7 +13,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
-
     @PostMapping("/user")
     User newUser(@RequestBody User newUser) {
         return userRepository.save(newUser);
@@ -36,6 +35,7 @@ public class UserController {
             user.setUsername(newUser.getUsername());
             user.setName(newUser.getName());
             user.setEmail(newUser.getEmail());
+            user.setDept(newUser.getDept());
             return userRepository.save(user);
         }).orElseThrow(() -> new UserNotFoundException(id));
 

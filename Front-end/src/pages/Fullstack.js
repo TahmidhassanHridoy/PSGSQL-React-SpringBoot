@@ -11,12 +11,12 @@ export default function Home
   },[]);
 
   const loadUsers=async ()=>{
-    const result=await axios.get("http://localhost:8050/user")
+    const result=await axios.get("http://localhost:5050/user")
     setUsers(result.data)
   }
 
   const deleteUser=async (id)=>{
-    await axios.delete(`http://localhost:8050/user/${id}`)
+    await axios.delete(`http://localhost:5050/user/${id}`)
     loadUsers()
   }
 
@@ -30,6 +30,7 @@ export default function Home
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">UserName</th>
+                <th scope="col">Department</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -42,6 +43,7 @@ export default function Home
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.username}</td>
+                <td>{user.dept}</td>
                 <td>
                   <Link type="button" class="btn btn-outline-primary mx-2" to={`/viewuser/${user.id}`}>View</Link>
                   <Link type="button" class="btn btn-outline-warning mx-2" to={`/edituser/${user.id}`}>Edit</Link>

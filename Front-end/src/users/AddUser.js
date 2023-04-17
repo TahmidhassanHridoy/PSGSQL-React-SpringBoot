@@ -9,10 +9,11 @@ let navegate=useNavigate();
 const [user,setUsers]= useState({
   name:"",
   email:"",
-  username:""
+  username:"",
+  department:""
 });
 
-const {name,username,email}=user
+const {name,username,email,department}=user
 
 const onInputChange = (e) => {
    setUsers({...user,[e.target.name]:e.target.value }); 
@@ -21,7 +22,7 @@ const onInputChange = (e) => {
 
 const onSubmit =async (e) => {
     e.preventDefault();   
-    await axios.post("http://localhost:8050/user",user)
+    await axios.post("http://localhost:5050/user",user)
     navegate("/")
 };
 
@@ -42,6 +43,10 @@ const onSubmit =async (e) => {
             <div class="form-floating mb-2">
               <input type="username" class="form-control" id="floatingInput" placeholder="Username" name='username' value={username} onChange={(e)=>onInputChange(e)} />
               <label for="floatingInput">UserName</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="username" class="form-control" id="floatingInput" placeholder="Depeartment" name='department' value={department} onChange={(e)=>onInputChange(e)} />
+              <label for="floatingInput">Department</label>
             </div>
             <button type="submit" class="btn btn-outline-primary">Submit</button>
             <Link type="submit" class="btn btn-outline-danger mx-2" to="/ ">Cancel</Link>
